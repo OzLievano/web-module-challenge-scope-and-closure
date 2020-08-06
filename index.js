@@ -158,14 +158,14 @@ function scoreboard(getInningScore,inning,number){
     homeScore += currentInningScore.home; // homeSCore is current score , currentInningScore is = to the function value result.
     awayScore += currentInningScore.away; 
     // we need to push these scores to scoreCard array 
-    scoreCard.push(`${i+1} inning: Away:${currentInningScore.away} - Home:${currentInningScore.home}`)
+    scoreCard.push(`${i} inning: Away:${currentInningScore.away} - ${currentInningScore.home}`)
   }
   if(homeScore === awayScore){
-    scoreCard.push('This game will require extra innings')
+    return 'This game will require extra innings'
   }else{
-    scoreCard.push(`Final Score Home: ${homeScore} - Away: ${awayScore}`)
+    return `Final Score Home: ${homeScore} - Away: ${awayScore}`
   }
   return scoreCard;
 }
 
-console.log(getInningScore,inning,12)
+console.log(getInningScore,inning,)
