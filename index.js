@@ -153,19 +153,25 @@ function scoreboard(getInningScore,inning,number){
   let awayScore = 0;
   let scoreCard = [];
   
-  for(let i=1; i < number;i++){
+  for(let i=1; i <= number;i++){
     const currentInningScore = getInningScore(inning)
     homeScore += currentInningScore.home; // homeSCore is current score , currentInningScore is = to the function value result.
     awayScore += currentInningScore.away; 
     // we need to push these scores to scoreCard array 
-    scoreCard.push(`${i} inning: Away:${currentInningScore.away} - ${currentInningScore.home}`)
-  }
+     if(i === 1){
+    scoreCard.push(`${i}st inning: Away:${currentInningScore.away} - ${currentInningScore.home}`)
+  }else if(i===2){
+      scoreCard.push(`${i}nd inning: Away:${currentInningScore.away} - ${currentInningScore.home}`)
+    }else{
+       scoreCard.push(`${i}th inning: Away:${currentInningScore.away} - ${currentInningScore.home}`)              
+}
+}
   if(homeScore === awayScore){
-    return 'This game will require extra innings'
+    scoreCard.push('This game will require extra innings')
   }else{
-    return `Final Score Home: ${homeScore} - Away: ${awayScore}`
+    scoreCard.push(`Final Score Home: ${homeScore} - Away: ${awayScore}`)
   }
   return scoreCard;
 }
 
-console.log(getInningScore,inning,)
+console.log(scoreboard(getInningScore,inning,9));
