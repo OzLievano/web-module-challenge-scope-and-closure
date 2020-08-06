@@ -27,11 +27,18 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ *    The difference between counter1 and counter2 is that in counter1 'count' is a private variable to the
+ *    function. Where as in counter2 'count is a global variable and any other function can affect the value
+ *    of count.
  * 
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ *    count1 uses a closure as the function has everything it needs to succesffuly run itself inside the function. 
+ *    count is also private to counterMaker() meaning that only count can only be changed inside of the function.
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ *    counter1 would be preferable if the lexical environment that is needed to run the counterMaker function is only
+ *    needed and used within this function. 
+ * 
+ *    counter2 would be preferable if there are multiple functions using count in their lexical environment.
 */
 
 // counter1 code
@@ -52,14 +59,13 @@ function counter2() {
 }
 
 
-/* Task 2: inning() 
+/* Taskœ 2: inning() 
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+    max = 3;
+    return Math.floor(Math.random() * Math.floor(max));
 }
 
 /* Task 3: finalScore()
@@ -76,9 +82,9 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
-
-  /*Code Here*/
+function finalScore(inning(),numInning){
+  for(let i = 0; i < numInning; i++){
+    console.log(inning())
 
 }
 
