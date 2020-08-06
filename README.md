@@ -9,7 +9,9 @@ The module challenge is the afternoon project or assignment that students work t
 ## Objectives
 
 - Explain function scope
+  function scope is where variables that have been declared are only available inside that function and not globally. Meaning functions or code outside of the function cannot access any variable declared inside the function.
 - Describe what closure is, how closure is created in a program and why it is important to understand closures in JavaScript  
+  closure is when a function has everything it needs to successfully invoke itself. THis keeps the lexical environment inside the function or in its function scope.Its important understand closure in Javascript to ensure that variables declared are specifically used when only necessarry. This ultimately keeps your clone clean. 
 
 ## Introduction
 
@@ -42,6 +44,7 @@ Find the file `index.js` and complete the tasks.
 Edit the `ReadMe` file with your answers.
 
 1. In your own words, define closure (1-2 sentences).
+ closure is when a function has everything it needs to successfully invoke itself. THis keeps the lexical environment inside the function or in its function scope.Its important understand closure in Javascript to ensure that variables declared are specifically used when only necessarry, which ultimately keeps your clone clean. 
 2. Study the following code, then answer the questions below.
 
 ```js
@@ -63,8 +66,10 @@ dansRoll();
 ```
 
 a. Where is closure used in this code? How can you tell?
-b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change?
+  closure is used inside the funct
+b. Compare and contrast calling `dansRoll` the first and second time. What is always the same? What could change? What is always the same is the interpolation of dan's name and 'rolled a ' string associated to that interpolation.  What changes is the newRoll interpolation as its a random number each time we invoke the personalDice() function.
 c. What is the lexical scope of `newRoll`? 
+  The lexical scope of NewRoll is anything inside of the function personalDice(name) and the function() being returned.
 
 ### Task 2c - Exit Ticket
 
