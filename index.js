@@ -143,13 +143,29 @@ Final Score: awayTeam - homeTeam */
 
 function getInningScore(inning){
   return {
-    home:inning(),
-    away:inning()
+    home: inning(),
+    away: inning()
   }
+};
+
+function scoreboard(getInningScore,inning,number){
+  let homeScore = 0;
+  let awayScore = 0;
+  let scoreCard = [];
+  
+  for(let i=1; i < number;i++){
+    const currentInningScore = getInningScore(inning)
+    homeScore += currentInningScore.home; // homeSCore is current score , currentInningScore is = to the function value result.
+    awayScore += currentInningScore.away; 
+    // we need to push these scores to scoreCard array 
+    scoreCard.push(`${i+1} inning: Away:${currentInningScore.away} - Home:${currentInningScore.home}`)
+  }
+  if(homeScore === awayScore){
+    scoreCard.push('This game will require extra innings')
+  }else{
+    scoreCard.push(`Final Score Home: ${homeScore} - Away: ${awayScore}`)
+  }
+  return scoreCard;
 }
 
-function scoreboard(getInningScore,inning,number) {
-  /* CODE HERE */
-}
-
-
+console.log(getInningScore,inning,12)
