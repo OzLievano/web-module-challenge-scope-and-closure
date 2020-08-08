@@ -27,11 +27,18 @@ function processFirstItem(stringList, callback) {
  * Study the code for counter1 and counter2. Answer the questions below.
  * 
  * 1. What is the difference between counter1 and counter2?
+ *    The difference between counter1 and counter2 is that in counter1 'count' is a private variable to the
+ *    function. Where as in counter2 'count is a global variable and any other function can affect the value
+ *    of count.
  * 
  * 2. Which of the two uses a closure? How can you tell?
- * 
+ *    count1 uses a closure as the function has everything it needs to succesffuly run itself inside the function. 
+ *    count is also private to counterMaker() meaning that only count can only be changed inside of the function.
  * 3. In what scenario would the counter1 code be preferable? In what scenario would counter2 be better? 
- *
+ *    counter1 would be preferable if the lexical environment that is needed to run the counterMaker function is only
+ *    needed and used within this function. 
+ * 
+ *    counter2 would be preferable if there are multiple functions using count in their lexical environment.
 */
 
 // counter1 code
@@ -52,15 +59,23 @@ function counter2() {
 }
 
 
-/* Task 2: inning() 
+/* Taskœ 2: inning() 
 
 Write a function called `inning` that returns a random number of points that a team scored in an inning. This should be a whole number between 0 and 2. */
 
-function inning(/*Code Here*/){
-
-    /*Code Here*/
-
+function inning(){
+    let score = Math.random() * 2;
+    score = Math.round(score);
+    return score;
 }
+
+  console.log(inning());
+  console.log(inning());
+  console.log(inning());
+  console.log(inning());
+  console.log(inning());
+  console.log(inning());
+
 
 /* Task 3: finalScore()
 
@@ -76,11 +91,35 @@ finalScore(inning, 9) might return:
 
 */ 
 
-function finalScore(/*code Here*/){
+function finalScore(inning,number){
+  // callback is inning function 
+  // number of innings (number)
+  let homeTeam = []; // Home team score for pushing
+  let awayTeam = []; // Away team score for pushing
+  // creating object with keys Home and Away with the value of 0 
+  let totalScore = {home:0,away:0};
+  // need to generate a score per inning 
+  for(let i=1; i <= number; i++){
+    let homeScore = 0;
+    let awayScore = 0;
+    homeScore = inning();
+    awayScore = inning();
+    homeTeam.push(homeScore);
+    awayTeam.push(awayScore);
+  }
+  let finalHome = homeTeam.reduce((totalHome,score)=> {
+    return totalHome + score;
+  },0)
+  let finalAway =awayTeam.reduce((totalAway,score)=> {
+    return totalAway + score;
+  },0)
+  totalScore.home = finalHome;
+  totalScore.away = finalAway;
 
-  /*Code Here*/
-
+  return totalScore;
 }
+
+console.log(finalScore(inning,9));
 
 /* Task 4: 
 
@@ -102,9 +141,31 @@ and returns the score at each pont in the game, like so:
 9th inning: awayTeam - homeTeam
 Final Score: awayTeam - homeTeam */
 
+function getInningScore(inning){
+  return {
+    home: inning(),
+    away: inning()
+  }
+};
 
-function scoreboard(/* CODE HERE */) {
-  /* CODE HERE */
+function scoreboard(getInningScore,inning,number){
+  let homeScore = 0;
+  let awayScore = 0;
+  let scoreCard = [];
+  
+  for(let i=1; i <= number;i++){
+    const currentInningScore = getInningScore(inning)
+    homeScore += currentInningScore.home; // homeSCore is current score , currentInningScore is = to the function value result.
+    awayScore += currentInningScore.away; 
+    // we need to push these scores to scoreCard array 
+    scoreCard.push(`${i} inning: Away:${currentInningScore.away} - ${currentInningScore.home}`)
+  }
+  if(homeScore === awayScore){
+    scoreCard.push('This game will require extra innings')
+  }else{
+    scoreCard.push(`Final Score Home: ${homeScore} - Away: ${awayScore}`)
+  }
+  return scoreCard;
 }
 
-
+console.log(scoreboard(getInningScore,inning,9));
